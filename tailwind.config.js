@@ -2,9 +2,13 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      lineClamp: {
+        2: '2',
+      },
+    },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
   ],
 };

@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PenLine } from 'lucide-react';
 
-export function Header() {
+export default function Header() {
   return (
-    <header className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-2xl font-bold text-gray-900">
-            Lucky Beard Blog
+    <header className="border-b border-gray-200">
+      <div className="container mx-auto px-8">
+        <div className="flex justify-between items-center py-6">
+          <Link to="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+            <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M60 0L75 30L90 0H120L90 60L120 120H90L75 90L60 120H30L60 60L30 0H60Z" fill="currentColor"/>
+            </svg>
+            <span className="font-bold text-xl tracking-wider">LUCKY BEARD</span>
           </Link>
           <Link 
             to="/create" 
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="px-6 py-2.5 bg-[#FF4D4D] text-white rounded-full hover:bg-[#FF3333] transition-colors"
           >
-            <PenLine className="h-4 w-4 mr-2" />
-            Write Article
+            Create new article
           </Link>
         </div>
       </div>
