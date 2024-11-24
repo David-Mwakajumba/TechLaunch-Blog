@@ -1,10 +1,16 @@
-import React, { MouseEventHandler, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, {
+    FormEventHandler,
+    MouseEventHandler,
+    useEffect,
+    useState,
+} from "react";
 import RichTextEditor from "../components/RichTextEditor";
 import FileUpload from "../components/FileUpload";
-import { Link, router, usePage } from "@inertiajs/react";
+import { Link, router, usePage, useForm, Head } from "@inertiajs/react";
 import { Category, CreatePostPageProps, User } from "@/types";
 import Layout from "@/components/Layout";
+import { showToast } from "@/utils/showToast";
+import { Loader } from "lucide-react";
 
 interface FormData {
     name: string;
@@ -16,15 +22,10 @@ export default function CreatePostPage({
     categories,
     users,
 }: CreatePostPageProps) {
-    // const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-    // const [content, setContent] = useState('');
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [fileError, setFileError] = useState<string>("");
     const [fileName, setFileName] = useState<string>("");
 
-    const { errors } = usePage().props;
-
-    const [values, setValues] = useState({
+    const { data, setData, post, processing, errors, reset } = useForm({
         title: null,
         name: null,
         category: null,
@@ -32,22 +33,13 @@ export default function CreatePostPage({
         image: null,
     });
 
-    function handleChange(e: any) {
-        setValues((values) => ({
-            ...values,
-            [e.target.id]: e.target.value,
-        }));
-    }
-
-    const handleDescriptionChange = (content: string) => {
-        setValues((prevValues) => ({
-            ...prevValues,
-            description: content, // Update description
-        }));
-    };
+    useEffect(() => {
+        return () => {
+            reset("category", "description", "title", "name");
+        };
+    }, []);
 
     const handleFileUpload = (file: File) => {
-        console.log("File", file);
         const allowedImageTypes = ["image/jpeg", "image/png", "image/jpg"];
 
         setFileError("");
@@ -55,27 +47,40 @@ export default function CreatePostPage({
             setFileError("Please select an image file (jpeg, png, jpg)");
             return;
         } else {
-            values.image = file;
+            data.image = file;
             setFileName(file.name);
         }
     };
 
-    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
-        router.post("/blog", values);
-        // console.log(values)
+        post("/blog", {
+            onSuccess: () => {
+                reset("category", "description", "title", "name");
+                setFileName("");
+                showToast(
+                    "Post created successfully.",
+                    "success",
+                    "bottom-right"
+                );
+            },
+            onError: () => {
+                showToast("Error creating post.", "error", "bottom-right");
+            },
+        });
     };
 
     return (
         <Layout>
+            <Head title="Create Post" />
             <div>
                 {/* Hero Image Section */}
                 <div className="relative h-[300px] mb-12">
-                    {/* <img 
-          src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80" 
-          alt="Blog creation hero" 
-          className="w-full h-full object-cover"
-        /> */}
+                    <img
+                        src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80"
+                        alt="Blog creation hero"
+                        className="w-full h-full object-cover"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent">
                         <div className="container mx-auto px-8 h-full flex items-center"></div>
                     </div>
@@ -91,9 +96,11 @@ export default function CreatePostPage({
                                 </label>
                                 <input
                                     type="text"
-                                    value={values.title || ""}
+                                    value={data.title || ""}
                                     id="title"
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                        setData("title", e.target.value)
+                                    }
                                     className="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#FF4D4D] focus:ring-[#FF4D4D]"
                                 />
                                 {errors.title && (
@@ -108,9 +115,11 @@ export default function CreatePostPage({
                                     Select your name
                                 </label>
                                 <select
-                                    value={values.name || ""}
+                                    value={data.name || ""}
                                     id="name"
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                        setData("name", e.target.value)
+                                    }
                                     className="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#FF4D4D] focus:ring-[#FF4D4D]"
                                 >
                                     <option value="">Select</option>
@@ -132,9 +141,11 @@ export default function CreatePostPage({
                                     Select category
                                 </label>
                                 <select
-                                    value={values.category || ""}
+                                    value={data.category || ""}
                                     id="category"
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                        setData("category", e.target.value)
+                                    }
                                     className="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#FF4D4D] focus:ring-[#FF4D4D]"
                                 >
                                     <option value="">Select</option>
@@ -191,8 +202,8 @@ export default function CreatePostPage({
                                     </div>
                                 )}
                                 <RichTextEditor
-                                    value={values.description}
-                                    onChange={handleDescriptionChange}
+                                    value={data.description}
+                                    onChange={(e) => setData("description", e)}
                                 />
                             </div>
 
@@ -204,11 +215,15 @@ export default function CreatePostPage({
                                     Preview
                                 </Link>
                                 <button
+                                    disabled={processing}
                                     onClick={handleSubmit}
                                     type="button"
                                     className="px-6 py-2.5 bg-[#FF4D4D] text-white rounded-full hover:bg-[#FF3333] transition-colors"
                                 >
-                                    Submit
+                                    {processing && (
+                                        <Loader className="animate-spin" />
+                                    )}
+                                    {!processing && "Submit"}
                                 </button>
                             </div>
                         </div>

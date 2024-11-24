@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 
         $categories = [
             [
-                'name' => 'Web Developer',
+                'name' => 'Web Development',
                 'icon' => 'Braces',
             ],
             [
