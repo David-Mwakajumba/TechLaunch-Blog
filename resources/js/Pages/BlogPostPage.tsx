@@ -80,12 +80,19 @@ export default function BlogPostPage({ post, relatedPosts }) {
                     </div>
                 </div>
             </article>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <h3 className="text-center">Related Posts</h3>
-                {relatedPosts.map((post) => (
-                    <BlogPost post={post} key={post.id} {...post} />
-                ))}
-            </div>
+            {/* Related Posts */}
+            {relatedPosts.length > 0 && (
+                <div className="my-16 mx-20 py-12">
+                    <h2 className="text-6xl text-center font-bold text-gray-900 mb-8">
+                        Related articles
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {relatedPosts.map((relatedPost) => (
+                            <BlogPost key={relatedPost.id} post={relatedPost} />
+                        ))}
+                    </div>
+                </div>
+            )}
         </Layout>
     );
 }
