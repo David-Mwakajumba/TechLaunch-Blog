@@ -12,7 +12,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+
+        $categories = [
+            [
+                'name' => 'Web Developer',
+                'icon' => 'Braces',
+            ],
+            [
+                'name' => 'Finance',
+                'icon' => 'CircleDollarSign',
+            ],
+            [
+                'name' => 'Marketing',
+                'icon' => 'ChartCandlestick',
+            ],
+            [
+                'name' => 'Cyber Security',
+                'icon' => 'Airplay',
+            ]
+        ];
+
+        foreach ($categories as $category) {
+            \App\Models\Category::create($category);
+        }
+        //  \App\Models\User::factory(10)->create();
+         \App\Models\Category::factory()->count(4)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
