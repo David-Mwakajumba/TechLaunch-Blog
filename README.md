@@ -4,7 +4,7 @@
 
 A modern blog application built with:
 
--   Laravel 10
+-   Laravel 10.48.24
 -   Inertia.js
 -   React TypeScript
 -   Tailwind CSS
@@ -69,3 +69,7 @@ cd your-blog-app
 # 7. Install Frontend Dependencies
 
         # php artisan serve
+
+# 8. Creates a symbolic link between the public/storage directory and the storage/app/public directory
+
+      php artisan storage:link

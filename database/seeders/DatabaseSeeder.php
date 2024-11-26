@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
                 'icon' => 'CircleDollarSign',
             ],
             [
-                'name' => 'Marketing',
-                'icon' => 'ChartCandlestick',
+                'name' => 'Marketingyy',
+                'icon' => 'ChartCandlesticky',
             ],
             [
                 'name' => 'Cyber Security',
@@ -35,8 +35,7 @@ class DatabaseSeeder extends Seeder
         foreach ($categories as $category) {
             \App\Models\Category::create($category);
         }
-        //  \App\Models\User::factory(10)->create();
-         \App\Models\Category::factory()->count(4)->create();
+        \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

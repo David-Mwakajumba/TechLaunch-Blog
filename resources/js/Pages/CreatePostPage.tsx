@@ -64,9 +64,9 @@ export default function CreatePostPage({
                 // Open the modal instead of toast
                 setIsModalOpen(true);
             },
-            onError: () => {
+            onError: (err) => {
                 // You could create a similar modal for errors
-                window.alert("Error creating post.");
+                console.log("Error creating post.", err);
             },
         });
     };

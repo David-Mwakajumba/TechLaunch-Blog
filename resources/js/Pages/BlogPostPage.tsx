@@ -1,7 +1,7 @@
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
 import Guest from "@/Layouts/GuestLayout";
-import { Head, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 
@@ -58,7 +58,11 @@ export default function BlogPostPage({ post, relatedPosts }) {
                                 </div>
                                 <div>
                                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-pink-100 text-pink-800">
-                                        {post.category.name}
+                                        <Link
+                                            href={`/?category=${post.category.id}`}
+                                        >
+                                            {post.category.name}
+                                        </Link>
                                     </span>
                                 </div>
                             </div>
@@ -66,6 +70,7 @@ export default function BlogPostPage({ post, relatedPosts }) {
 
                         {/* Main Content */}
                         <div className="col-span-9">
+                            <h1>{post.title}</h1>
                             <div className=" rounded-xl p-8">
                                 <div className="prose prose-lg max-w-none">
                                     <div
