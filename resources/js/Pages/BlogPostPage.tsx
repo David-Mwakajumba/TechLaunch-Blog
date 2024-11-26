@@ -83,7 +83,19 @@ export default function BlogPostPage({ post, relatedPosts }) {
             {/* Related Posts */}
             {relatedPosts.length > 0 && (
                 <div className="my-16 mx-20 py-12">
-                    <h2 className="text-6xl text-center font-bold text-gray-900 mb-8">
+                    <h2
+                        className="
+    text-2xl     // Small devices (mobile)
+    sm:text-3xl  // Small screens
+    md:text-4xl  // Medium screens
+    lg:text-5xl  // Large screens
+    xl:text-6xl  // Extra large screens
+    text-center 
+    font-bold 
+    text-gray-900 
+    mb-8
+"
+                    >
                         Related articles
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

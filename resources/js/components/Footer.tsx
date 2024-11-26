@@ -66,7 +66,7 @@ export default function Footer() {
                 </div>
 
                 {/* Cookie Notice */}
-                <div className="border-t border-[#3D4044] pt-8">
+                <div className=" pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <p className="text-sm text-gray-400 md:pr-8">
                             By using this website, you agree to our use of

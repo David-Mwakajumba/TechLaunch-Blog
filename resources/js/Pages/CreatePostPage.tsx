@@ -11,7 +11,8 @@ import { Category, CreatePostPageProps, User } from "@/types";
 import Layout from "@/components/Layout";
 import { showToast } from "@/utils/showToast";
 import { Loader } from "lucide-react";
-
+import cardheader from "../assets/card-header.png";
+import Modal from "../components/SuccessModal";
 interface FormData {
     name: string;
     category: string;
@@ -24,6 +25,7 @@ export default function CreatePostPage({
 }: CreatePostPageProps) {
     const [fileError, setFileError] = useState<string>("");
     const [fileName, setFileName] = useState<string>("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         title: null,
@@ -58,14 +60,13 @@ export default function CreatePostPage({
             onSuccess: () => {
                 reset("category", "description", "title", "name");
                 setFileName("");
-                showToast(
-                    "Post created successfully.",
-                    "success",
-                    "bottom-right"
-                );
+
+                // Open the modal instead of toast
+                setIsModalOpen(true);
             },
             onError: () => {
-                showToast("Error creating post.", "error", "bottom-right");
+                // You could create a similar modal for errors
+                window.alert("Error creating post.");
             },
         });
     };
@@ -77,7 +78,7 @@ export default function CreatePostPage({
                 {/* Hero Image Section */}
                 <div className="relative h-[300px] mb-12">
                     <img
-                        src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80"
+                        src={cardheader}
                         alt="Blog creation hero"
                         className="w-full h-full object-cover"
                     />
@@ -230,6 +231,13 @@ export default function CreatePostPage({
                     </div>
                 </div>
             </div>
+            {/* Modal for success message */}
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                message="Your blog post has been successfully created!"
+                title="Post Published"
+            />
         </Layout>
     );
 }
