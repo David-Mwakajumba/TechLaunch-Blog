@@ -70,8 +70,22 @@ export default function BlogPostPage({ post, relatedPosts }) {
 
                         {/* Main Content */}
                         <div className="col-span-9">
-                            <h1>{post.title}</h1>
                             <div className=" rounded-xl p-8">
+                                <h2
+                                    className="
+    text-2xl     // Small devices (mobile)
+    sm:text-3xl  // Small screens
+    md:text-4xl  // Medium screens
+    lg:text-5xl  // Large screens
+    xl:text-6xl  // Extra large screens
+    text-start 
+    font-bold 
+    text-gray-900 
+    mb-8
+"
+                                >
+                                    {post.title}{" "}
+                                </h2>{" "}
                                 <div className="prose prose-lg max-w-none">
                                     <div
                                         className="whitespace-pre-wrap"

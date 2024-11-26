@@ -1,6 +1,8 @@
-# TechLaunch-Blog
+# Project name: Lucky beard Tech launch program
 
 ## Project Overview
+
+TechLaunch-Blog is a modern, full-featured blog application designed to provide a seamless content creation and reading experience. Built with cutting-edge web technologies, the application offers a robust and scalable solution for bloggers and tech enthusiasts.
 
 A modern blog application built with:
 
