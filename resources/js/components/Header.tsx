@@ -3,7 +3,7 @@ import whiteLogo from "../assets/logo-white.svg";
 
 export default function Header() {
     return (
-        <header className="border-b border-gray-200">
+        <header className="">
             <div className="container mx-auto px-8">
                 <div className="flex justify-between items-center py-6">
                     <Link

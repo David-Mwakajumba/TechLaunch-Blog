@@ -24,14 +24,14 @@ export default function Footer() {
                     {/* Navigation Links and Social Media */}
                     <div className="flex items-center gap-8">
                         {/* Policy Links */}
-                        <nav className="flex items-center gap-6 text-sm">
+                        <nav className="flex flex-col sm:flex-row items-center gap-6 text-sm">
                             <a
                                 href="#"
                                 className="text-gray-400 hover:text-white transition-colors"
                             >
                                 Privacy policy
                             </a>
-                            <span className="border-l-2 h-4 border-gray-300"></span>
+                            <span className="hidden sm:block border-l-2 h-4 border-gray-300"></span>
                             <a
                                 href="#"
                                 className="text-gray-400 hover:text-white transition-colors"
