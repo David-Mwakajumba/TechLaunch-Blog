@@ -1,6 +1,10 @@
 import React from "react";
 import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import darkLogo from "../assets/logo-dark.svg";
+import facebook from "../assets/facebook.svg";
+import linkedin from "../assets/linkedin.svg";
+import whatsapp from "../assets/whatsapp.svg";
+import instagram from "../assets/instagram.svg";
 
 export default function Footer() {
     return (
@@ -27,6 +31,7 @@ export default function Footer() {
                             >
                                 Privacy policy
                             </a>
+                            <span className="border-l-2 h-4 border-gray-300"></span>
                             <a
                                 href="#"
                                 className="text-gray-400 hover:text-white transition-colors"
@@ -41,25 +46,41 @@ export default function Footer() {
                                 href="#"
                                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#3D4044] hover:bg-[#4A4D51] transition-colors"
                             >
-                                <MessageCircle className="w-5 h-5" />
+                                <img
+                                    src={whatsapp}
+                                    alt="whatsapp"
+                                    className="h-12 w-auto"
+                                />
                             </a>
                             <a
                                 href="#"
                                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#3D4044] hover:bg-[#4A4D51] transition-colors"
                             >
-                                <Facebook className="w-5 h-5" />
+                                <img
+                                    src={facebook}
+                                    alt="facebook"
+                                    className="h-12 w-auto"
+                                />
                             </a>
                             <a
                                 href="#"
                                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#3D4044] hover:bg-[#4A4D51] transition-colors"
                             >
-                                <Instagram className="w-5 h-5" />
+                                <img
+                                    src={instagram}
+                                    alt="instagram"
+                                    className="h-12 w-auto"
+                                />
                             </a>
                             <a
                                 href="#"
                                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#3D4044] hover:bg-[#4A4D51] transition-colors"
                             >
-                                <Linkedin className="w-5 h-5" />
+                                <img
+                                    src={linkedin}
+                                    alt="linkedin"
+                                    className="h-12 w-auto"
+                                />
                             </a>
                         </div>
                     </div>

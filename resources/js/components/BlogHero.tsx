@@ -15,9 +15,9 @@ export default function BlogHero() {
                     </h1>
                     <div className="flex items-center gap-4 text-gray-500 uppercase tracking-wider text-sm mb-6">
                         <span>Creativity</span>
-                        <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                        <span className="border-l-2 h-4 border-gray-300"></span>
                         <span>Culture</span>
-                        <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                        <span className="border-l-2 h-4 border-gray-300"></span>
                         <span>Collaboration</span>
                     </div>
                     <p className="text-gray-600 text-lg leading-relaxed">
